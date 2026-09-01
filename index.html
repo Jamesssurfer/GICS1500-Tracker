@@ -29,7 +29,8 @@
         <a href="#ibd-rs" class="px-3 py-1.5 rounded text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 whitespace-nowrap">🏆 IBD RS Leaderboard</a>
         <a href="#multi-timeframe" class="px-3 py-1.5 rounded text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 whitespace-nowrap">⏱ Multi-Timeframe</a>
         <a href="#biggest-movers" class="px-3 py-1.5 rounded text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 whitespace-nowrap">🔥 Biggest Movers</a>
-        <a href="#missing-tickers" class="px-3 py-1.5 rounded text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 whitespace-nowrap">📉 Missing Tickers</a>
+        <a href="#missing-days" class="px-3 py-1.5 rounded text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 whitespace-nowrap">📉 Missing Days</a>
+        <a href="#missing-date" class="px-3 py-1.5 rounded text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 whitespace-nowrap">📅 Missing Date</a>
         <a href="#master-table" class="px-3 py-1.5 rounded text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 whitespace-nowrap">📋 Master Table</a>
     </nav>
     
@@ -483,8 +484,8 @@
 </div>
 </div>
 </div>
-<h2 id="missing-tickers" class="text-xl font-bold text-gray-900 mb-2 mt-8">📉 Constituents Missing From This Run</h2>
-<p class="text-sm text-gray-500 italic mb-4">Tickers currently listed across Wikipedia's S&amp;P 500/400/600 tables that returned no price data from Yahoo Finance this run - likely index-membership lag (Wikipedia not yet reflecting a recent add/removal), a symbol-format mismatch, or a temporary data gap. This can't be auto-corrected since the script has no way to edit Wikipedia's tables - treat this as a flag to check manually.</p>
+<h2 id="missing-days" class="text-xl font-bold text-gray-900 mb-2 mt-8">📉 Missing Days — Constituents With No Data This Run</h2>
+<p class="text-sm text-gray-500 italic mb-4">Tickers currently listed across Wikipedia's S&amp;P 500/400/600 tables that returned no price data from Yahoo Finance this run at all - every day is missing for these, likely index-membership lag (Wikipedia not yet reflecting a recent add/removal), a symbol-format mismatch, or a temporary data gap. This can't be auto-corrected since the script has no way to edit Wikipedia's tables - treat this as a flag to check manually.</p>
 <div class="overflow-x-auto rounded-lg border border-gray-200">
 <table class="min-w-full">
 <thead class="bg-gray-800 text-white text-xs uppercase tracking-wider">
@@ -991,6 +992,32 @@
 <tr class="hover:bg-gray-50 border-b border-gray-100 text-sm"><td class="px-4 py-2 text-center whitespace-nowrap"><code class="bg-gray-100 px-1 rounded">WU</code></td><td class="px-4 py-2 text-left whitespace-nowrap">Western Union</td><td class="px-4 py-2 text-left whitespace-nowrap">Financials</td><td class="px-4 py-2 text-center whitespace-nowrap">1d</td></tr>
 <tr class="hover:bg-gray-50 border-b border-gray-100 text-sm"><td class="px-4 py-2 text-center whitespace-nowrap"><code class="bg-gray-100 px-1 rounded">WWW</code></td><td class="px-4 py-2 text-left whitespace-nowrap">Wolverine World Wide, Inc.</td><td class="px-4 py-2 text-left whitespace-nowrap">Consumer Discretionary</td><td class="px-4 py-2 text-center whitespace-nowrap">1d</td></tr>
 <tr class="hover:bg-gray-50 border-b border-gray-100 text-sm"><td class="px-4 py-2 text-center whitespace-nowrap"><code class="bg-gray-100 px-1 rounded">XHR</code></td><td class="px-4 py-2 text-left whitespace-nowrap">Xenia Hotels & Resorts, Inc.</td><td class="px-4 py-2 text-left whitespace-nowrap">Real Estate</td><td class="px-4 py-2 text-center whitespace-nowrap">1d</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="missing-date" class="text-xl font-bold text-gray-900 mb-2 mt-8">📅 Missing Date — Isolated Gaps in the Last 20 Trading Days</h2>
+<p class="text-sm text-gray-500 italic mb-4">Dates within the last 20 trading sessions where a ticker has no price despite trading normally before and after - unlike Missing Days above, these tickers otherwise have data. A date affecting 30% or more of eligible tickers at once is reported as a single market-wide line rather than repeated per ticker. This does not affect RS rankings - return calculations already step over a single missing day using the nearest available price.</p>
+<h3 class="text-base font-semibold text-gray-700 mb-2">🌐 Market-Wide Gap Dates</h3>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+<table class="min-w-full">
+<thead class="bg-gray-800 text-white text-xs uppercase tracking-wider">
+<tr><th class="px-4 py-2 text-center">Date</th><th class="px-4 py-2 text-center">Missing</th><th class="px-4 py-2 text-center">Eligible</th><th class="px-4 py-2 text-center">% Missing</th></tr>
+</thead>
+<tbody class="divide-y divide-gray-100 bg-white">
+<tr class="hover:bg-gray-50 border-b border-gray-100 text-sm"><td class="px-4 py-2 text-center whitespace-nowrap">2026-08-28</td><td class="px-4 py-2 text-center whitespace-nowrap">946</td><td class="px-4 py-2 text-center whitespace-nowrap">1006</td><td class="px-4 py-2 text-center whitespace-nowrap">94%</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="text-base font-semibold text-gray-700 mb-2 mt-4">🎯 Per-Ticker Gap Dates</h3>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+<table class="min-w-full">
+<thead class="bg-gray-800 text-white text-xs uppercase tracking-wider">
+<tr><th class="px-4 py-2 text-center">Ticker</th><th class="px-4 py-2 text-left">Company</th><th class="px-4 py-2 text-left">Sector</th><th class="px-4 py-2 text-left">GICS Sub-Industry</th><th class="px-4 py-2 text-left">Missing Dates</th></tr>
+</thead>
+<tbody class="divide-y divide-gray-100 bg-white">
+<tr class="hover:bg-gray-50 border-b border-gray-100 text-sm"><td class="px-4 py-2 text-center whitespace-nowrap"><code class="bg-gray-100 px-1 rounded">IESC</code></td><td class="px-4 py-2 text-left whitespace-nowrap">IES Holdings</td><td class="px-4 py-2 text-left whitespace-nowrap">Industrials</td><td class="px-4 py-2 text-left whitespace-nowrap">Construction & Engineering</td><td class="px-4 py-2 text-left whitespace-nowrap">2026-08-24</td></tr>
+<tr class="hover:bg-gray-50 border-b border-gray-100 text-sm"><td class="px-4 py-2 text-center whitespace-nowrap"><code class="bg-gray-100 px-1 rounded">MNST</code></td><td class="px-4 py-2 text-left whitespace-nowrap">Monster Beverage</td><td class="px-4 py-2 text-left whitespace-nowrap">Consumer Staples</td><td class="px-4 py-2 text-left whitespace-nowrap">Soft Drinks & Non-alcoholic Beverages</td><td class="px-4 py-2 text-left whitespace-nowrap">2026-08-10</td></tr>
 </tbody>
 </table>
 </div>
